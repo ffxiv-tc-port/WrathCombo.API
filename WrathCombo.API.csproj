@@ -1,5 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+    <!--
+        台服移植（tc-api13）：本檔只改兩處，不動任何 IPC 介面內容。
+          1. TargetFramework net10.0-windows → net9.0-windows7.0
+             （艦隊釘 API13 / net9；net9.0-windows 與 net9.0-windows7.0 是同一個 TFM，
+             這裡寫完整形式以與艦隊其他專案一致。）
+          2. GeneratePackageOnBuild true → false
+             （我們不發 NuGet 套件，消費端一律走子模組 + ProjectReference。）
+        LangVersion 維持 14：上游碼用了 C# 14 的 extension 區塊
+        （Extension/*.cs 三個檔）與 field 關鍵字（Wrapper.cs），
+        需要 .NET 10 SDK 編譯（本機 10.0.302）。目標框架仍是 net9，不影響執行期。
+    -->
     <PropertyGroup>
         <!-- Package Metadata -->
         <PackageId>WrathCombo.API</PackageId>
@@ -14,7 +25,7 @@
         <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <PackageOutputPath>$(OutputPath)nuget</PackageOutputPath>
@@ -30,7 +41,7 @@
         <NoWarn>MSB3277</NoWarn>
 
         <!-- Code Features -->
-        <TargetFramework>net10.0-windows</TargetFramework>
+        <TargetFramework>net9.0-windows7.0</TargetFramework>
         <LangVersion>14</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
