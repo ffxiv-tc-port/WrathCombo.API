@@ -1,4 +1,35 @@
-﻿# WrathCombo.API
+﻿<!-- ffxiv-tc-port 繁體中文說明開始 -->
+# WrathCombo.API(台服 fork)
+
+由 Ethan Henderson（zbee，Team Wrath）開發的函式庫，提供與 `WrathCombo` 插件 IPC 互動所需的
+列舉、資料型別與強型別包裝方法，避免消費端自己複製特徵碼與追 IPC 變更紀錄。
+
+## 台服 fork 的目的
+
+跟隨艦隊釘 API13 / net9，`.csproj` 只改兩處，不動任何 IPC 介面內容：
+
+- `TargetFramework` 從 `net10.0-windows` 改回 `net9.0-windows7.0`（艦隊釘 API13 / net9）。
+- `GeneratePackageOnBuild` 改為 `false`（我們不發 NuGet 套件，消費端一律走子模組 +
+  `ProjectReference`）。`LangVersion` 維持 14，因上游碼用了 C# 14 的 extension 區塊與
+  `field` 關鍵字，需要 .NET 10 SDK 編譯；目標框架仍是 net9，不影響執行期。
+
+## 與上游的差異
+
+上述 csproj 兩處調整。另外目前 pin 落後上游：`ComboTargetTypeKeys` 列舉值上游已改名
+（`SingleTargetDPS`→`SingleTarget`、`AoEDPS`→`MultiTarget` 等），我們尚未同步，屬版本落差
+非刻意改動。
+
+## 誰在用它
+
+艦隊裡目前只有 **`AutoDuty`** 一個插件消費。
+
+---
+
+以下為上游原始 README，內容未經修改：
+
+<!-- ffxiv-tc-port 繁體中文說明結束 -->
+
+# WrathCombo.API
 
 WrathCombo.API provides the enum and similar data
 used by [Wrath Combo's](https://github.com/PunishXIV/WrathCombo) IPC (read: API), the
