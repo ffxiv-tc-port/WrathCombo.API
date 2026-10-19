@@ -124,5 +124,19 @@ public static partial class WrathIPCWrapper
         SafeInvokeRawMethod(() =>
             RawMethod.SetVariantReadyForJob.InvokeFunc(lease, jobID, enabled));
 
+    public static string? GetOccultParentComboName(uint phantomJobID) =>
+        SafeInvokeRawMethod(() =>
+            RawMethod.GetOccultParentComboName.InvokeFunc(phantomJobID));
+
+    public static List<string>? GetOccultOptionNames(uint phantomJobID) =>
+        SafeInvokeRawMethod(() =>
+            RawMethod.GetOccultOptionNames.InvokeFunc(phantomJobID));
+
+    public static SetResult SetOccultReadyForPhantomJob
+        (Guid lease, uint phantomJobID, bool enabled = true) =>
+        SafeInvokeRawMethod(() =>
+            RawMethod.SetOccultReadyForPhantomJob
+                .InvokeFunc(lease, phantomJobID, enabled));
+
     #endregion
 }
