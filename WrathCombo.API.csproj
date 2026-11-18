@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <!--
-        台服移植（tc-api13）：本檔只改兩處，不動任何 IPC 介面內容。
+        台服移植（tc-7.30）：本檔只改兩處，不動任何 IPC 介面內容。
           1. TargetFramework net10.0-windows → net9.0-windows7.0
              （艦隊釘 API13 / net9；net9.0-windows 與 net9.0-windows7.0 是同一個 TFM，
              這裡寫完整形式以與艦隊其他專案一致。）
